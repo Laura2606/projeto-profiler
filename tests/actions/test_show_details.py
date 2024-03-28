@@ -26,3 +26,6 @@ def test_show_details_non_existing_file(capsys, non_existing_file_context):
     show_details(non_existing_file_context)
     captured = capsys.readouterr()
     assert "File '???' does not exist\n" == captured.out
+
+
+# teste
