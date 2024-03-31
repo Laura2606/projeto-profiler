@@ -1,5 +1,6 @@
 from pro_filer.actions.main_actions import show_details  # NOQA
 import pytest
+import os
 from datetime import datetime
 
 
@@ -47,12 +48,17 @@ def test_show_details_file_without_extension(file_without_extension, capsys):
     context = {"base_path": file_without_extension}
     show_details(context)
     captured = capsys.readouterr()
+
+    mod_date = datetime.fromtimestamp(
+        os.path.getmtime(file_without_extension)
+    ).strftime("%Y-%m-%d")
+
     expected_output = (
-        "File name: file_without_extension\n"
-        "File size in bytes: 38\n"
-        "File type: file\n"
-        "File extension: [no extension]\n"
-        "Last modified date: 2024-03-28\n"
+        f"File name: file_without_extension\n"
+        f"File size in bytes: 38\n"
+        f"File type: file\n"
+        f"File extension: [no extension]\n"
+        f"Last modified date: {mod_date}\n"
     )
     assert expected_output in captured.out
 
