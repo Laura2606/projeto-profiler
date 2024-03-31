@@ -81,3 +81,6 @@ def test_show_details_incorrect_date_format(capsys):
     _, mod_date_str = captured.out.split("Last modified date: ")
     with pytest.raises(ValueError):
         datetime.strptime(mod_date_str.strip(), "%d-%m-%Y")
+
+
+# teste teste
